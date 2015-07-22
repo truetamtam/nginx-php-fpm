@@ -12,13 +12,39 @@ ENV DEBIAN_FRONTEND noninteractive
 # Add sources for latest nginx
 # Install software requirements
 RUN apt-get update && \
-apt-get install -y software-properties-common && \
+apt-get install -y software-properties-common curl && \
 nginx=stable && \
 add-apt-repository ppa:nginx/$nginx && \
 apt-get update && \
 apt-get upgrade -y && \
-BUILD_PACKAGES="supervisor nginx php5-fpm git php5-mysql php5-mysql php-apc php5-curl php5-gd php5-intl php5-mcrypt php5-memcache php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-pgsql php5-mongo pwgen" && \
+
+# packages list
+#
+BUILD_PACKAGES="supervisor \
+    nodejs \
+    nginx \
+    php5-cli \
+    php5-fpm \
+    git \
+    php5-mysql \
+    php-apc \
+    php5-curl \
+    php5-gd \
+    php5-intl \
+    php5-mcrypt \
+    php5-memcache \
+    php5-sqlite \
+    php5-tidy \
+    php5-xmlrpc \
+    php5-xsl \
+    php5-pgsql \
+    php5-mongo \
+    pwgen" && \
 apt-get -y install $BUILD_PACKAGES && \
+curl -s https://getcomposer.org/installer | php && \
+mv composer.phar /usr/local/bin/composer && \
+sudo ln -s /usr/bin/nodejs /usr/bin/node && \
+npm install -g bower && \
 apt-get remove --purge -y software-properties-common && \
 apt-get autoremove -y && \
 apt-get clean && \
@@ -27,6 +53,9 @@ echo -n > /var/lib/apt/extended_states && \
 rm -rf /var/lib/apt/lists/* && \
 rm -rf /usr/share/man/?? && \
 rm -rf /usr/share/man/??_*
+
+# enable mcrypt explicitly
+php5enmod mcrypt
 
 # tweak nginx config
 RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
@@ -74,7 +103,7 @@ VOLUME ["/usr/share/nginx/html"]
 
 # add test PHP file
 ADD ./index.php /usr/share/nginx/html/index.php
-RUN chown -Rf www-data.www-data /usr/share/nginx/html/
+RUN chown -Rf www-data:www-data /usr/share/nginx/html
 
 # Expose Ports
 EXPOSE 443
