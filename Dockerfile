@@ -22,6 +22,7 @@ apt-get upgrade -y && \
 #
 BUILD_PACKAGES="supervisor \
     nodejs \
+    npm \
     nginx \
     php5-cli \
     php5-fpm \
