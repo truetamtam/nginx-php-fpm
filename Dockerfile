@@ -56,7 +56,7 @@ rm -rf /usr/share/man/?? && \
 rm -rf /usr/share/man/??_*
 
 # enable mcrypt explicitly
-php5enmod mcrypt
+RUN php5enmod mcrypt
 
 # tweak nginx config
 RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
