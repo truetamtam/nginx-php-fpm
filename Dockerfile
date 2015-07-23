@@ -87,6 +87,10 @@ mkdir -p /etc/nginx/ssl/
 ADD ./nginx-site.conf /etc/nginx/sites-available/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
 # Add git commands to allow container updating
 ADD ./pull /usr/bin/pull
 ADD ./push /usr/bin/push
