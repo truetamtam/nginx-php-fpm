@@ -45,4 +45,4 @@ fi
 
 # Start supervisord and services
 #/usr/bin/supervisord -n -c /etc/supervisord.conf
-supervisord -c /etc/supervisord.conf
+# supervisord -c /etc/supervisord.conf
