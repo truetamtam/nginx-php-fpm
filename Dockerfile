@@ -31,8 +31,6 @@ BUILD_PACKAGES="supervisor \
     php-apc \
     php5-curl \
     php5-gd \
-    imagemagick \
-    php5-imagick \
     php5-intl \
     php5-mcrypt \
     php5-memcache \
@@ -41,6 +39,7 @@ BUILD_PACKAGES="supervisor \
     php5-xmlrpc \
     php5-xsl \
     php5-pgsql \
+    php5-mongo \
     pwgen" && \
 apt-get -y install $BUILD_PACKAGES && \
 curl -s https://getcomposer.org/installer | php && \
