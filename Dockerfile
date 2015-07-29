@@ -17,9 +17,7 @@ nginx=stable && \
 add-apt-repository ppa:nginx/$nginx && \
 apt-get update && \
 apt-get upgrade -y && \
-
-# Imagemagick
-RUN apt-get install imagemagick
+apt-get install imagemagick
 
 # packages list
 #
