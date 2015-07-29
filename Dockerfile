@@ -17,7 +17,6 @@ nginx=stable && \
 add-apt-repository ppa:nginx/$nginx && \
 apt-get update && \
 apt-get upgrade -y && \
-apt-get install imagemagick
 
 # packages list
 #
@@ -32,6 +31,7 @@ BUILD_PACKAGES="supervisor \
     php-apc \
     php5-curl \
     php5-gd \
+    imagemagick \
     php5-imagick \
     php5-intl \
     php5-mcrypt \
