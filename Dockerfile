@@ -18,6 +18,9 @@ add-apt-repository ppa:nginx/$nginx && \
 apt-get update && \
 apt-get upgrade -y && \
 
+# Imagemagick
+RUN apt-get install imagemagick
+
 # packages list
 #
 BUILD_PACKAGES="supervisor \
@@ -31,6 +34,7 @@ BUILD_PACKAGES="supervisor \
     php-apc \
     php5-curl \
     php5-gd \
+    php5-imagick \
     php5-intl \
     php5-mcrypt \
     php5-memcache \
@@ -39,7 +43,6 @@ BUILD_PACKAGES="supervisor \
     php5-xmlrpc \
     php5-xsl \
     php5-pgsql \
-    php5-mongo \
     pwgen" && \
 apt-get -y install $BUILD_PACKAGES && \
 curl -s https://getcomposer.org/installer | php && \
