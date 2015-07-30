@@ -28,6 +28,7 @@ BUILD_PACKAGES="supervisor \
     php5-fpm \
     git \
     php5-mysql \
+    php5-pdo \
     php-apc \
     php5-curl \
     php5-gd \
